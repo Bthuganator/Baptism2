@@ -3,50 +3,259 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Parker Baptism Program</title>
+  <title>Baptism Program</title>
   <style>
     :root{
-      --bg:#e9edf2;
-      --text:#223;
+      --bg1:#f5f8fc;
+      --bg2:#e8eff8;
+      --ink:#203248;
+      --muted:#5f7288;
+      --panel:rgba(255,255,255,.82);
+      --line:rgba(170,188,210,.7);
+      --gold:#c9a35d;
+      --shadow:0 16px 38px rgba(32,50,72,.12), 0 3px 10px rgba(32,50,72,.06);
+      --radius:28px;
     }
+
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
+    html{scroll-behavior:smooth}
     body{
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      margin:0;
+      color:var(--ink);
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.9), rgba(255,255,255,0) 35%),
+        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
+      min-height:100vh;
     }
-    .wrap{
-      width:min(100%%, 980px);
+
+    .page-shell{
+      width:min(1120px, calc(100% - 24px));
       margin:0 auto;
-      padding:20px 14px 48px;
+      padding:18px 0 48px;
     }
-    .program-page{
-      margin:22px auto 34px;
-      width:min(100%%, 760px);
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      margin:10px auto 22px;
+      padding:28px 20px 22px;
+      border:1px solid rgba(255,255,255,.85);
+      border-radius:34px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.75)),
+        linear-gradient(135deg, rgba(210,226,244,.6), rgba(255,255,255,.35));
+      box-shadow:var(--shadow);
+      text-align:center;
     }
-    .program-page img{
+
+    .hero:before,
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:220px;
+      height:220px;
+      border-radius:999px;
+      background:radial-gradient(circle, rgba(201,163,93,.18), rgba(201,163,93,0));
+      pointer-events:none;
+    }
+    .hero:before{top:-90px; left:-70px;}
+    .hero:after{right:-90px; bottom:-120px;}
+
+    .eyebrow{
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.73rem;
+      color:var(--muted);
+      margin:0 0 10px;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(2rem, 4.8vw, 3.5rem);
+      line-height:1.04;
+      font-weight:600;
+    }
+
+    .subtitle{
+      margin:10px auto 0;
+      max-width:760px;
+      font-size:clamp(1rem, 2vw, 1.2rem);
+      line-height:1.6;
+      color:var(--muted);
+    }
+
+    .gold-line{
+      width:110px;
+      height:3px;
+      border-radius:99px;
+      margin:18px auto 16px;
+      background:linear-gradient(90deg, rgba(201,163,93,0), var(--gold), rgba(201,163,93,0));
+    }
+
+    .nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin:18px 0 4px;
+      padding:0;
+      list-style:none;
+    }
+
+    .nav a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:120px;
+      padding:11px 16px;
+      border-radius:999px;
+      text-decoration:none;
+      color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size:.95rem;
+      background:rgba(255,255,255,.74);
+      border:1px solid rgba(185,198,215,.8);
+      box-shadow:0 6px 18px rgba(32,50,72,.06);
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .nav a:hover{
+      transform:translateY(-1px);
+      box-shadow:0 10px 22px rgba(32,50,72,.1);
+      background:rgba(255,255,255,.94);
+    }
+
+    .section{
+      margin:20px auto 28px;
+      padding:18px;
+      border-radius:var(--radius);
+      background:var(--panel);
+      border:1px solid rgba(255,255,255,.7);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+
+    .section-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:4px 6px 18px;
+    }
+
+    .section-title{
+      margin:0;
+      font-size:clamp(1.25rem, 2vw, 1.7rem);
+      font-weight:600;
+    }
+
+    .section-label{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--muted);
+      font-size:.9rem;
+      letter-spacing:.02em;
+    }
+
+    .frame{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 8px 28px rgba(32,50,72,.08);
+    }
+
+    .frame img{
       display:block;
-      width:100%%;
+      width:100%;
       height:auto;
-      border-radius:6px;
-      box-shadow:
-        0 8px 24px rgba(0,0,0,.12),
-        0 2px 6px rgba(0,0,0,.08);
+      background:#fff;
     }
-    @media (max-width: 640px){
-      .wrap{padding:10px 8px 28px}
-      .program-page{margin:12px auto 18px; width:100%%}
-      .program-page img{border-radius:4px}
+
+    .footer-note{
+      text-align:center;
+      color:var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size:.92rem;
+      margin:6px 0 18px;
+    }
+
+    @media (max-width: 700px){
+      .page-shell{width:min(100%, calc(100% - 12px)); padding-top:8px}
+      .hero{padding:22px 14px 18px; border-radius:24px}
+      .section{padding:12px; border-radius:22px; margin:14px auto 18px}
+      .section-header{padding:4px 4px 12px}
+      .nav a{min-width:unset; padding:10px 14px; font-size:.92rem}
+      .frame{border-radius:18px}
     }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="program-page"><img src="sheet1-bottom.png" alt=""></section>
-    <section class="program-page"><img src="sheet2-bottom.png" alt=""></section>
-    <section class="program-page"><img src="sheet2-top.png" alt=""></section>
-    <section class="program-page"><img src="sheet1-top.png" alt=""></section>
+  <main class="page-shell">
+    <section class="hero">
+      <p class="eyebrow">Baptism Program</p>
+      <h1>Welcome</h1>
+      <div class="gold-line"></div>
+      <p class="subtitle">The original program artwork is preserved exactly, now presented in a cleaner web style inspired by the reference site.</p>
+      <ul class="nav">
+        <li><a href="#cover">Cover</a></li>
+        <li><a href="#program">Program</a></li>
+        <li><a href="#hymns">Hymns</a></li>
+        <li><a href="#back">Back Cover</a></li>
+      </ul>
+    </section>
+
+    <section class="section" id="cover">
+      <div class="section-header">
+        <div>
+          <p class="section-label">Program page</p>
+          <h2 class="section-title">Front Cover</h2>
+        </div>
+      </div>
+      <div class="frame">
+        <img src="sheet1-bottom.png" alt="Front Cover" />
+      </div>
+    </section>
+
+    <section class="section" id="program">
+      <div class="section-header">
+        <div>
+          <p class="section-label">Program page</p>
+          <h2 class="section-title">Program</h2>
+        </div>
+      </div>
+      <div class="frame">
+        <img src="sheet2-bottom.png" alt="Program" />
+      </div>
+    </section>
+
+    <section class="section" id="hymns">
+      <div class="section-header">
+        <div>
+          <p class="section-label">Program page</p>
+          <h2 class="section-title">Hymns</h2>
+        </div>
+      </div>
+      <div class="frame">
+        <img src="sheet2-top.png" alt="Hymns" />
+      </div>
+    </section>
+
+    <section class="section" id="back">
+      <div class="section-header">
+        <div>
+          <p class="section-label">Program page</p>
+          <h2 class="section-title">Back Cover</h2>
+        </div>
+      </div>
+      <div class="frame">
+        <img src="sheet1-top.png" alt="Back Cover" />
+      </div>
+    </section>
+
+    <p class="footer-note">Designed for simple static hosting on GitHub Pages, Netlify, or any basic web host.</p>
   </main>
 </body>
 </html>
